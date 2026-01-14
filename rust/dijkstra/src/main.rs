@@ -9,7 +9,9 @@ struct State {
 
 impl Ord for State {
     fn cmp(&self, other: &Self) -> Ordering {
-        other.cost.cmp(&self.cost) // Min-heap
+        // Reverse default max-heap ordering to create a min-heap.
+        // Dijkstra greedily processes the lowest-cost node first.
+        self.cost.cmp(&other.cost).reverse()
     }
 }
 
